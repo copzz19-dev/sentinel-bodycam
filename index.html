@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sentinel">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Sentinel Bodycam</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">S</span><div><strong>SENTINEL</strong><small>BODYCAM</small></div></div>
+    <span id="status" class="status">CAMERA OFF</span>
+  </header>
+
+  <main>
+    <section class="screen active" id="cameraScreen">
+      <div class="preview-wrap">
+        <video id="preview" autoplay muted playsinline></video>
+        <div class="preview-placeholder" id="placeholder">
+          <div class="camera-symbol">◉</div>
+          <strong>Camera preview</strong>
+          <span>Tap ENABLE CAMERA to begin</span>
+        </div>
+        <div class="rec-overlay" id="recOverlay"><i></i> REC <span id="overlayTime">00:00:00</span></div>
+        <div class="timestamp" id="stamp"></div>
+      </div>
+      <div class="timer" id="timer">00:00:00</div>
+      <p class="hint" id="hint">Your camera stays off until you enable it.</p>
+      <div class="controls">
+        <button class="btn secondary" id="cameraBtn">ENABLE CAMERA</button>
+        <button class="btn record" id="recordBtn" disabled><span class="record-dot"></span> START RECORDING</button>
+        <button class="btn stop" id="stopBtn" disabled>STOP & SAVE</button>
+      </div>
+      <div class="notice">Recording is visible on-screen. Use only where recording is permitted and respect other people's privacy.</div>
+    </section>
+
+    <section class="screen" id="libraryScreen">
+      <div class="section-heading"><div><h1>Recordings</h1><p>Saved on this device</p></div><span id="count" class="count">0</span></div>
+      <div id="recordings" class="recordings"><div class="empty">No recordings yet.</div></div>
+    </section>
+
+    <section class="screen" id="settingsScreen">
+      <h1>Settings</h1>
+      <div class="setting"><div><strong>Camera</strong><small>Choose front or rear camera</small></div>
+        <select id="facing"><option value="environment">Rear camera</option><option value="user">Front camera</option></select>
+      </div>
+      <div class="setting"><div><strong>Video quality</strong><small>Higher quality uses more storage</small></div>
+        <select id="quality"><option value="high">High</option><option value="standard" selected>Standard</option></select>
+      </div>
+      <div class="setting"><div><strong>Storage</strong><small>Recordings stay in this browser on this iPhone</small></div><span class="local">LOCAL</span></div>
+      <p class="notice">Do not rely on this app as an official evidence-management system. Keep a separate backup of important videos. iOS may limit long recordings or storage when the device is low on space.</p>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <button class="tab selected" data-screen="cameraScreen"><span>◉</span>Camera</button>
+    <button class="tab" data-screen="libraryScreen"><span>▤</span>Recordings</button>
+    <button class="tab" data-screen="settingsScreen"><span>⚙</span>Settings</button>
+  </nav>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
